@@ -27,7 +27,7 @@ RUN set -eux; \
         zip
 
 # Copy custom php.ini settings if present
-COPY php.ini /usr/local/etc/php/conf.d/99-custom.ini
+COPY docker/php/php.ini /usr/local/etc/php/conf.d/99-custom.ini
 
 WORKDIR /var/www/html
 
