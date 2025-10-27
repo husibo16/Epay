@@ -53,3 +53,8 @@
 - 使用反向代理（例如 Traefik 或外层 Nginx）终止 TLS，将 80 端口暴露给负载均衡器。
 - 如需水平扩展 PHP 容器，可在 Compose 文件中增加副本数，同时启用共享的 Session 存储（例如 Redis）。
 - 将默认密码替换为强随机密码，并将 `.env` 文件限制在安全位置。
+
+## 常见问题排查
+
+- **构建时提示 `failed to calculate checksum ... "/default.conf": not found`**：
+  旧版本的 Dockerfile 会尝试从镜像根目录复制 `default.conf` 和 `php.ini`，在 Compose 的构建上下文为项目根目录时会找不到文件。请确保拉取最新代码，或在自定义 Dockerfile 中使用 `COPY ./docker/nginx/default.conf` 与 `COPY ./docker/php/php.ini` 这样的绝对相对路径。
