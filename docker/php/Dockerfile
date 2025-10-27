@@ -26,8 +26,10 @@ RUN set -eux; \
         pdo_mysql \
         zip
 
-# Copy custom php.ini settings if present
-COPY docker/php/php.ini /usr/local/etc/php/conf.d/99-custom.ini
+# Copy custom php.ini settings explicitly from the repository root so the
+# instruction works regardless of the build context root inferred by
+# docker-compose.
+COPY ./docker/php/php.ini /usr/local/etc/php/conf.d/99-custom.ini
 
 WORKDIR /var/www/html
 
