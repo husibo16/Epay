@@ -1,6 +1,9 @@
 FROM nginx:1.25-alpine
 
-COPY docker/nginx/default.conf /etc/nginx/conf.d/default.conf
+# Copy the vhost configuration from the repository root explicitly so BuildKit
+# never looks for it in the image root ("/") when a different build context is
+# provided.
+COPY ./docker/nginx/default.conf /etc/nginx/conf.d/default.conf
 
 WORKDIR /var/www/html
 
