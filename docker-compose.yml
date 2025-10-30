@@ -76,6 +76,12 @@ services:
       timeout: 5s
       retries: 5
       start_period: 30s
+    deploy:
+      resources:
+        limits:
+          memory: 4G  # 设置内存限制为 4GB
+  #      reservations:
+  #        memory: 2G  # 设置保留的内存为 2GB（根据需要调整）       
 
   redis:
     image: redis:7-alpine
