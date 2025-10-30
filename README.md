@@ -1,18 +1,3 @@
-# Epay Docker Production Stack
-
-该方案为 Epay 项目提供了一套面向生产环境的容器化部署模板，参考了 [vmqfox-backend-docker](https://github.com/husibo16/vmqfox-backend-docker) 项目的结构与实践。整体目录结构如下：
-
-```
-Dockerfile
-docker-compose.yml
-nginx.conf
-php.ini
-entrypoint.sh
-scheduler.cron
-env.example
-README.md
-```
-
 ## 版本与镜像选择
 
 - **PHP**：使用 `php:7.4-fpm-alpine`，与项目中使用的 PDO、GD、bcMath 等扩展保持兼容，同时保证与现有代码中的 MySQL 驱动、会话及模板逻辑保持一致。镜像内预编译 `bcmath`、`gd`（含 FreeType/JPEG 支持）、`gmp`、`intl`、`pdo_mysql`、`redis` 等扩展以满足支付与国密相关依赖。
